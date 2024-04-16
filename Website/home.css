@@ -1,0 +1,248 @@
+/*-----HERO------*/
+#hero{
+  width: 100%;
+
+  z-index: 1;
+}
+
+#transition{
+  position: absolute;
+  max-width: 100%;
+
+  z-index: 100;
+}
+
+#trans-shadow{
+  position: absolute;
+  margin-top: 3%;
+  max-width: 100%;
+  
+  z-index: 1;
+}
+
+/*-Word Logo-*/
+#word-logo {
+  max-width: 60%;
+  position: absolute;
+
+  z-index: 100;
+}
+
+#word-shadow{
+  max-width: 60%;
+  position: absolute;
+  margin-left: 1%;
+  margin-top: 1%;
+
+  z-index: 50;
+}
+
+  /*-----BANNER-----*/
+  
+  .banner{
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+/*-----EXAMPLE DASHBOARD------*/
+.exdashback{
+  min-height: 2000px;
+  max-height: 2000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #F2F2F2;
+  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.733);
+
+  z-index: 10;
+}
+
+.exdash{
+  min-width: 60%;
+  max-width: 60%;
+  max-height: 80%;
+  position: absolute;
+  display: flex;
+  border-radius: 35px;
+  margin-top: 25%;
+  
+  background-color: #FFFFFF;
+  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.24);
+
+  z-index: 100;
+}
+
+.basic-info{
+  display: flex;
+  flex-direction: column;
+  max-width: 20%;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6%;
+}
+
+#city{
+  font-weight: 1000;
+  font-size: 50px;
+}
+
+#temp{
+  font-size: 50px;
+}
+
+#descr{
+  font-size: 42px;
+}
+
+#weather-icon{
+  max-width: 90%;
+}
+
+.extra-info{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 80%;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding-top: 6%;
+  padding-bottom: 6%;
+  padding-right: 6%;
+}
+
+.indexname{
+  font-size: 34px;
+}
+
+.humidity{
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  min-width: 50%;
+  max-height: 70%;
+  min-height: 70%;
+  align-items: center;
+}
+
+.hum-ind{
+  justify-content: center;
+  align-items: center;
+}
+
+.humidity-number{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -40%;
+}
+
+#humidity-index{
+  max-width: 100%;
+}
+
+#humidity-num{
+  font-size: 58px;
+  position: absolute;
+}
+
+#humidity-unit{
+  font-size: 34px;
+  color: #757A7A;
+  position: absolute;
+}
+
+.wind{
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  min-width: 50%;
+  max-height: 70%;
+  min-height: 70%;
+  align-items: center;
+}
+
+.wind-numer{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  margin-top: 5%;
+  align-items: baseline;
+
+  z-index: 200;
+}
+
+#wind-num{
+  font-size: 26px;
+}
+
+#wind-unit{
+  font-size: 20px;
+  color: #757A7A;
+}
+
+#wind-icon{
+  max-width: 70%;
+}
+
+.uvindex{
+  max-height: 30%;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 4%;
+}
+
+
+/*-----BLUE REGION-----*/
+
+.blue{
+  background-color: #11C8E4;
+  min-height: 1200px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  z-index: 1;
+}
+
+.card{
+  min-height: 100%;
+  max-width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-right: 5%;
+  padding: 3%;
+  padding-left: 22%;
+  margin-top: 10%;
+
+  border-radius: 35px;
+  background-color: #ffffff;
+  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.24);
+
+  z-index: 10;
+}
+
+.blue-p p{
+  text-align: left;
+  font-size: 26px;
+}
+
+#lance{
+  max-width: 42%;
+  position: absolute;
+  margin-right: 50%;
+
+  z-index: 20;
+}

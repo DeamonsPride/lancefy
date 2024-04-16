@@ -1,0 +1,258 @@
+body{
+    background-color: #F6F6F6;
+}
+
+/*----NETWORK HEADER----*/
+.net-header {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+    transition: top .3s;
+    margin-top: 3.5%;
+    
+    justify-content: center;
+    align-items: center;
+    max-height: 102px;
+    min-height: 8%;
+    background-color: #11C8E4;
+    box-shadow: 0px  7px  6px rgba(0, 0, 0, 0.247);
+  
+    z-index: 100;
+  }
+  
+  .net-container {
+    max-width: 90%;
+      
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  
+    max-height: 102px;
+    min-height: 8%;
+    
+    padding: 0.8% 3%;
+    position: relative;
+    display:flex;
+    align-items: center;
+    background-color: rgba(0, 83, 156, 0);
+  }
+
+  #name{
+    font-family: inter;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: left;
+  
+    color: #F6F6F6;
+  
+    z-index: 200;
+}
+
+  /*---MAP---*/
+.map{
+    margin-top: 13%;
+    padding-bottom: 2em;
+}
+
+/*---INFO---*/
+.info {
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.25);
+
+    min-height: 25em;
+    min-width: 25em;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    top: 12.5em;
+    left: 3%;
+    padding: 2em;
+    justify-content: space-between;
+
+    position: absolute;
+}
+
+.x{
+    background-color: #11c8e400;
+    border: 0px;
+}
+
+#x{
+    max-width: 1.5em;
+    max-height: 1.5em;
+}
+
+#x:hover{
+    max-width: 1.6em;
+    max-height: 1.6em;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#loc-name {
+    font-family: inter;
+    font-weight: 800;
+    font-size: 60px;
+    text-align: left;
+  
+    color: #130E01;
+  
+    z-index: 200;
+}
+
+.location-id{
+    display: flex;
+    flex-direction: row;
+}
+
+.location-id-txt{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: left;
+  
+    color: #130E01;
+}
+
+.station-id{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: left;
+
+    margin-left: 2px;
+  
+    color: #11C8E4;
+}
+
+.weather {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#weather-icon{
+    max-width: 7em;
+    margin-right: 1em;
+}
+
+.weather-txt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-txt-temp{
+    display: flex;
+    flex-direction: row;
+}
+
+#weather-num{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 70px;
+    color: #130E01;
+    margin: 0px;
+}
+
+#deg{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 40px;
+    color: #757A7A;
+    margin: 0px;
+}
+
+#weather-txt-desc{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 26px;
+    color: #130E01;
+    margin: 0px;
+}
+
+.extra{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.extra-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.extra-icon{
+    max-width: 3.5em;
+    max-height: 3.5em;
+}
+
+.extra-txt{
+    display: flex;
+    flex-direction: column;
+}
+
+.extra-txt-numbers{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.extra-txt-numbers-num{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 30px;
+    color: #130E01;
+    margin: 0px;
+}
+
+.extra-txt-numbers-un{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 15px;
+    color: #757A7A;
+    margin: 0px;
+}
+
+.extra-txt-text{
+    font-family: inter;
+    font-weight: 300;
+    font-size: 16px;
+    color: #130E01;
+    margin: 0px;
+}
+
+.dash-button{
+    background-color: #11C8E4;
+    border: 0px;
+    border-radius: 30px;
+    min-width: 15em;
+    min-height: 2em;
+
+    color: #F6F6F6;
+    font-family: inter;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.dash-button:hover{
+    background-color: #131414;
+    border: 0px;
+    border-radius: 30px;
+    min-width: 15em;
+    min-height: 2em;
+
+    color: #F6F6F6;
+    font-family: inter;
+    font-weight: 300;
+    font-size: 30px;
+}

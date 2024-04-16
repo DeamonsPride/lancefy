@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>lancefy</title>
+    <link rel="icon" type="image/x-icon" href="Images\Lance.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1{text-align: center;}
+        h2{text-align: center;}
+        h3{text-align: left;}
+        h4{text-align: center;}
+        p{text-align: left;}
+        pre{text-align: center;}
+    </style>
+    <link rel="stylesheet" href="standard.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
+</head>
+
+<body onload="startTime()">
+    <!--HEADER-->
+    <div class="global-header">
+        <div class="container">
+            <div class="logo">
+                <a href="home.html"><img id="logo" src="Images\lancefy-text-logo.png" height="30vh"></a>
+            </div>
+                <ul class="navbar">
+                    <li><a href="network.html"><button class="nav" type="button">network</button></li></a>
+                    <li><a href="dashboard.html"><button class="nav" type="button">dashboard</button></li></a>
+                    <li><a href="dashboard.html"><button class="nav" type="button">about</button></li></a>
+                    <li><a href="files.html"><button class="nav" type="button">files</button></li></a>
+                </ul>
+        </div>
+    </div>
+    <!--DASHBOARD HEADER-->
+    <div class="dash-header">
+        <div class="dash-container">
+            <h3>JuznoSAZgC01</h3> <!--var-->
+            <div class="search"></div>
+        </div>
+    </div>
+    <!--CONTENT-->
+    <div class="content">
+        <!--first row-->
+        <div class="row">
+            <!--card 1-->
+            <div class="left-cards">
+                <div class="upper-left">
+                    <div class="curr-weath">
+                        <img id="current-weather" src="Icons\Rainy-Icon.png">
+                        <div class="temp-degr">
+                            <p id="temp">-2</p> <!--var-->
+                            <p id="degree">°</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower-left">
+                    <div class="location">
+                        <img id="location" src="Icons\Location-Icon.png">
+                        <p>Samobor</p> <!--var-->
+                        <p id="comma">, </p>
+                        <p>Croatia</p> <!--var-->
+                    </div>
+                    <div class="time">
+                        <img id="calendar" src="Icons\Calendar-Icon.png">
+                        <p id="current-date"></p>
+                        <div id="clock"></div>
+                    </div>
+                </div>
+            </div>
+            <!--card 2-->
+            <div class="sec-cards">
+                <div class="second-card">
+                    <section class="pyscript first">
+                        <div id="avg"></div>
+                        <script type="py" src="./avarages.py" config="./pyscript.toml"></script>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--second row-->
+        <div class="row">
+            <!--card 3-->
+            <div class="left-cards">
+                <div class="upper-left">
+                    <div class="week-weather">
+                        <ul id="week-list">
+                            <li>
+                                <div class="week-item">
+                                    <img class="week-im" src="Icons\Sunny-Icon.png">
+                                    <div class="wk-temp">
+                                        <p class="wk-temp-mx">+</p> <!--var-->
+                                        <p class="wk-temp-mx">29</p> <!--var-->
+                                        <p class="wk-temp-mx">°/</p>
+                                        <p class="wk-temp-mn">+</p> <!--var-->
+                                        <p class="wk-temp-mn">18</p> <!--var-->
+                                        <p class="wk-temp-mn">°</p>
+                                    </div>
+                                    <p class="wk-date">25 July</p>
+                                    <p class="wk-day">Tuesday</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="week-item">
+                                    <img class="week-im" src="Icons\Sunny-Icon.png">
+                                    <div class="wk-temp">
+                                        <p class="wk-temp-mx">+</p> <!--var-->
+                                        <p class="wk-temp-mx">29</p> <!--var-->
+                                        <p class="wk-temp-mx">°/</p>
+                                        <p class="wk-temp-mn">+</p> <!--var-->
+                                        <p class="wk-temp-mn">18</p> <!--var-->
+                                        <p class="wk-temp-mn">°</p>
+                                    </div>
+                                    <p class="wk-date">25 July</p>
+                                    <p class="wk-day">Tuesday</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="week-item">
+                                    <img class="week-im" src="Icons\Sunny-Icon.png">
+                                    <div class="wk-temp">
+                                        <p class="wk-temp-mx">+</p> <!--var-->
+                                        <p class="wk-temp-mx">29</p> <!--var-->
+                                        <p class="wk-temp-mx">°/</p>
+                                        <p class="wk-temp-mn">+</p> <!--var-->
+                                        <p class="wk-temp-mn">18</p> <!--var-->
+                                        <p class="wk-temp-mn">°</p>
+                                    </div>
+                                    <p class="wk-date">25 July</p> <!--var-->
+                                    <p class="wk-day">Tuesday</p> <!--var-->
+                                </div>
+                            </li>
+                            <li>
+                                <div class="week-item">
+                                    <img class="week-im" src="Icons\Sunny-Icon.png">
+                                    <div class="wk-temp">
+                                        <p class="wk-temp-mx">+</p> <!--var-->
+                                        <p class="wk-temp-mx">29</p> <!--var-->
+                                        <p class="wk-temp-mx">°/</p>
+                                        <p class="wk-temp-mn">+</p> <!--var-->
+                                        <p class="wk-temp-mn">18</p> <!--var-->
+                                        <p class="wk-temp-mn">°</p>
+                                    </div>
+                                    <p class="wk-date">25 July</p> <!--var-->
+                                    <p class="wk-day">Tuesday</p> <!--var-->
+                                </div>
+                            </li>
+                            <li>
+                                <div class="week-item">
+                                    <img class="week-im" src="Icons\Sunny-Icon.png">
+                                    <div class="wk-temp">
+                                        <p class="wk-temp-mx">+</p> <!--var-->
+                                        <p class="wk-temp-mx">29</p> <!--var-->
+                                        <p class="wk-temp-mx">°/</p>
+                                        <p class="wk-temp-mn">+</p> <!--var-->
+                                        <p class="wk-temp-mn">18</p> <!--var-->
+                                        <p class="wk-temp-mn">°</p>
+                                    </div>
+                                    <p class="wk-date">25 July</p> <!--var-->
+                                    <p class="wk-day">Tuesday</p> <!--var-->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lower-left">
+                    <div class="tomorrow-item">
+                        <img id="tomorrow-im" src="Icons\Storm-Icon.png">
+                        <div class="tomorrow-desc">
+                            <p id="tomorrow-txt">Tomorrow</p>
+                            <div class="tomorrow-temp">
+                                <p id="tmrw-temp">23</p> <!--var-->
+                                <p id="tmrw-deg">°</p>
+                            </div>
+                            <p id="tmrw-prog">Thunder Storm Day</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--card 4-->
+            <div class="four-cards">
+                <div class="upper-four">
+                    <div class="card4-card">
+                        <p class="card4-header">Wind Status</p>
+                        <div id="wind"></div> 
+                        <div class="card4-number">
+                            <p class="card4-variable">7.90</p> <!--var-->
+                            <p class="card4-unit">km/h</p>
+                        </div>
+                    </div>
+                    <div class="card4-card">
+                        <p class="card4-header">Pressure</p>
+                        <div id="pressure"></div> 
+                        <div class="card4-number">
+                            <p class="card4-variable">1040</p> <!--var-->
+                            <p class="card4-unit">hPa</p>
+                        </div>
+                    </div>
+                    <div class="card4-card">
+                        <p class="card4-header">Air Quality</p>
+                        <div id="air-quality"></div> 
+                        <div class="card4-number">
+                            <p class="card4-variable">108</p> <!--var-->
+                            <p class="card4-unit">US AQI</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower-four">
+                    <div class="humidity"></div>
+                    <div class="uv"></div>
+                    <div class="perceived"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script> //date
+        const d = new Date().toLocaleDateString('en-us', {day:"numeric", month:"numeric", year:"numeric",});
+        document.getElementById("current-date").innerHTML = d;
+    </script>
+    <script> //time
+        function startTime() {
+          const today = new Date();
+          let h = today.getHours();
+          let m = today.getMinutes();
+          let s = today.getSeconds();
+          m = checkTime(m);
+          s = checkTime(s);
+          document.getElementById('clock').innerHTML =  h + ":" + m + ":" +s;
+          setTimeout(startTime, 1000);
+        }
+        
+        function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+        }
+    </script>   
+    <script> //wind chart
+        var trace1 = {
+            x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], //var
+            y: [3, 4, 5, 5, 6, 3, 6, 7, 10, 15, 17, 20], //var
+            type: 'scatter',
+            mode: 'lines',
+            line: {
+                color: '#11C8E4',
+                width: 3
+            }
+        };
+
+        var layout = {
+            xaxis: {
+                showgrid: false,
+                zeroline: false
+            },
+            yaxis: {
+                showgrid: false
+            },
+            width: 300,
+            height: 200,
+            paper_bgcolor: '251c1c00',
+            plot_bgcolor: '251c1c00'
+        };
+
+        var data = [trace1];
+        var config = {responsive: true}
+
+        Plotly.newPlot('wind', data, layout);
+    </script>
+    <script>
+        var data = [
+        {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: 1040,
+            type: "indicator",
+            mode: "gauge+number",
+            delta: { reference: 400 },
+            gauge: { axis: { range: [950, 1070] } }
+        }
+        ];
+
+        var layout = { 
+            width: 300, 
+            height: 200,
+            paper_bgcolor: '251c1c00',
+            plot_bgcolor: '251c1c00' 
+        };
+        Plotly.newPlot('pressure', data, layout);
+    </script>
+    <script>
+        var data = [
+        {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: 108,
+            type: "indicator",
+            mode: "gauge+number",
+            delta: { reference: 400 },
+            gauge: { axis: { range: [0, 500] } }
+        }
+        ];
+
+        var layout = { 
+            width: 300, 
+            height: 200,
+            paper_bgcolor: '251c1c00',
+            plot_bgcolor: '251c1c00' 
+        };
+        Plotly.newPlot('air-quality', data, layout);
+    </script>
+</body>
+
+<footer>
+    <!--ABOUT US-->
+    <div class="about">
+        <h4>About Us</h4>
+        <p>We’re an open source service for collecting real time weather data on remote locations. Using community propped stations, Lancefy collects and stores weather data for everyone.</p>
+    </div>
+    <!--SOCIALS-->
+    <div class="socials">
+        <ul>
+            <li><a href="https://twitter.com/OKAMIcrafts" target="_blank"><button type="button"><img src="Icons\twitter-logo.png"></button></li></a>
+            <li><a href="https://www.instagram.com/okami_craft/" target="_blank"><button type="button"><img src="Icons\instagram-icon.png"></button></li></a>
+            <li><a href="https://discord.com/invite/HZ9RM4P6xt" target="_blank"><button type="button"><img src="Icons\discord-logo.png"></button></li></a>
+        </ul>
+    </div>
+    <!--SUPPORT-->
+    <div class="support">
+        <h4>Support</h4>
+        <p><a href="mailto:support@okamicrafts.net" target="_blank">Mail support</a></p>
+        <a href="https://discord.com/channels/1174335863749091338/1174355193710784552" target="_blank">Discord support</a>
+    </div>
+</footer>
+</html>
