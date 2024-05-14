@@ -42,16 +42,18 @@ p{
 
 /*----CONTENT----*/
 .content{
-    min-height: 2000px;
+    height: auto;
     background-color: #F2F2F2;
     display: flex;
     flex-direction: column;
+    padding: 5em;
 }
 
 /*--First row--*/
 
 .row{
   display: flex;
+  flex-direction: wrap;
   justify-content: space-between;
   flex-direction: row;
 }
@@ -60,11 +62,14 @@ p{
 
 .left-cards{
   display: flex;
-  margin-top: 10%;
-  margin-left: 3%;
   padding: 4em;
+  margin-top: 5em;
   flex-direction: column;
-  min-width: 25%;
+  align-items: start;
+  justify-content: center;
+  width: 30em;
+  height: 30em;
+  aspect-ratio: 1 / 1;
 
   background-color: white;
   border-radius: 30px;
@@ -72,20 +77,21 @@ p{
   z-index: 10;
 }
 
-.sec-cards{
+.right-cards{
   display: flex;
-  margin-top: 10%;
-  margin-left: 3%;
-  margin-right: 3%;
-  padding: 3%;
+  padding: 4em;
+  margin-top: 5em;
+  margin-left: 5em;
   flex-direction: column;
-  min-width: 55%;
   align-content: center;
   justify-content: center;
+  max-width: 70em;
+  width: 70em;
+  height: 30em;
 
   background-color: white;
   border-radius: 30px;
-  outline: 3px solid #11C8E4;
+  /*outline: 3px solid #11C8E4;*/
   
   z-index: 10;
 }
@@ -181,6 +187,11 @@ p{
 
 /*Card 3*/
 
+.third-card {
+  display: flex;
+  margin-bottom: 1em;
+}
+
 
 #week-list{
   padding-left: 0px;
@@ -258,28 +269,13 @@ p{
   color: #757A7A;
 }
 
+
+
 /*Card 4*/
-.four-cards{
-  display: flex;
-  margin-top: 10%;
-  margin-left: 3%;
-  margin-right: 3%;
-  padding: 3%;
-  flex-direction: column;
-  min-width: 55%;
-  align-content: center;
-  justify-content: center;
-
-  background-color: white;
-  border-radius: 30px;
-  outline: 3px solid #11C8E4;
-  
-  z-index: 10;
-}
-
 .card4-header{
   font-family: inter;
   font-weight: 300;
+  font-size: 27px;
   color: #130E01;
   margin: 0px;
 }
@@ -288,6 +284,7 @@ p{
   display: flex;
   margin-bottom: 1em;
   justify-content: space-between;
+  flex-direction: row;
 }
 
 .lower-four{
@@ -305,9 +302,13 @@ p{
 .card4-variable{
   font-family: inter;
   font-weight: 300;
-  font-size: 36px;
+  font-size: 46px;
   color: #130E01;
   margin: 0px;
+}
+
+.card4-unit{
+  font-size: 23px;
 }
 
 .card4-unit{
@@ -317,11 +318,13 @@ p{
 .card4-card{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
 
   background: #F2F2F2;
   border-radius: 30px;
   padding: 1em;
-  outline: 3px solid orange;
+  /*outline: 3px solid orange;*/
 }
 
 #wind{
@@ -329,11 +332,31 @@ p{
   margin: 0px;
 }
 
-.pyscript{
-  outline: 3px solid red;
+.lower-four{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
+.lower-four-cards{
+  display: flex;
+  flex-direction: column;
 
-.second{
-  outline: 3px solid green;
+  padding: 1em;
+  background-color: #F2F2F2;
+  width: 270px;
+  border-radius: 30px;
+}
+
+.card4-lower-second{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card4-lower-img{
+  max-width: 43px;
+  max-height: 43px;
+
+  margin-right: 1em;
 }

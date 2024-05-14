@@ -16,6 +16,7 @@
      </style>
      <link rel="stylesheet" href="home.css">
      <link rel="stylesheet" href="standard.css">
+     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -48,32 +49,36 @@
         <div class="exdash">
             <div class="basic-info">
                 <p id="city">Zagreb</p>
-                <p id="temp">-2°</p>
-                <p id="descr">Cloudy</p>
-                <img id="weather-icon" src="Icons\Cloudy-Icon.png">
+                <div class="temperature">
+                    <p id="temp"></p> <!--var-->
+                    <p id="deg">°</p>
+                </div>
+                <p id="descr">Cloudy</p> <!--var-->
+                <img id="weather-icon" src="Icons\Cloudy-Icon.png"> 
             </div>
             <div class="extra-info">
                 <div class="humidity">
                     <p class="indexname">Humidity</p>
                     <div class="hum-ind">
-                        <img id="humidity-index" src="Icons\Humidity-Icon-default.png">
+                        <!--<img id="humidity-index" src="Icons\Humidity-Icon-default.png">
                         <div class="humidity-number">
                             <p id="humidity-num">82</p>
                             <p id="humidity-unit">%</p>
-                        </div>
+                        </div>-->
+                        <div id="humidity"></div>
                     </div>
                 </div>
                 <div class="wind">
                     <p class="indexname">Wind</p>
                     <div class="wind-numer">
-                        <p id="wind-num">12-28</p>
+                        <p id="wind-num">12-28</p> <!--var-->
                         <p id="wind-unit">km/h</p>
                     </div>
                     <img id="wind-icon" src="Icons\Wind-Icon.png">
                 </div>
                 <div class="uvindex">
                     <p class="indexname">UV Index</p>
-                    <img id="uv-index" src="Icons\UV-index-line.png">
+                    <div id="uvindex"></div>
                 </div>
             </div>
         </div>
@@ -90,6 +95,240 @@
             </div>
         </div>
     </div>
+
+
+    <!--FETCH-->
+    <script>
+
+
+        //TEMPERATURE FETCH
+        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
+            method: 'GET',
+            headers: {
+                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const temperature = data.temperature[0].value; // Access the temperature value from the response
+                const markup = `<p id="temp">${temperature}</p>`;
+                document.querySelector('p').insertAdjacentHTML('afterend', markup);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+
+        //HUMIDITY FETCH
+        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
+            method: 'GET',
+            headers: {
+                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            const humidityValue = data.humidity[0].value;
+            updateHumidityGraph(humidityValue);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+
+        //UV FETCH
+        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
+            method: 'GET',
+            headers: {
+                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const uvValue = data.uvIndex[0].value;
+                updateUvGraph(uvValue);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
+
+    <!--GRAPHS-->
+    <script> //humidity graph
+        var prevHumidityValue = null; //previous humidity
+
+        var data = [
+            {
+                type: "indicator",
+                mode: "gauge+number+delta",
+                value: 82,
+                delta: { reference: 0, increasing: { color: "#757A7A" }, decreasing: { color: "#757A7A" } },
+                gauge: {
+                    axis: { range: [null, 100], tickwidth: 2, tickcolor: "#131414" },
+                    bar: { color: "#11C8E4"},
+                    bgcolor: "#B5F5F5",
+                    borderwidth: 2,
+                    bordercolor: "#757A7A",
+                }
+            }
+        ];
+
+        var layout = {
+            width: 370,
+            height: 270,
+            margin: { t: 0, r: 0, l: 0, b: 0 },
+            paper_bgcolor: "251c1c00",
+            font: { color: "#131414", family: "Inter" }
+        };
+
+        Plotly.newPlot('humidity', data, layout);
+
+        //update graph
+        function updateHumidityGraph(humidityValue) {
+            if (prevHumidityValue != humidityValue) {
+                var deltaReference = prevHumidityValue !== null ? prevHumidityValue : 0; // Use previous humidity value as reference if available
+                prevHumidityValue = humidityValue; // Update previous humidity value
+            }
+            var newData = [{
+                type: "indicator",
+                mode: "gauge+number+delta",
+                value: humidityValue,
+                delta: { reference: deltaReference, increasing: { color: "#757A7A" }, decreasing: { color: "#757A7A" } },
+                gauge: {
+                    axis: { range: [null, 100], tickwidth: 2, tickcolor: "#131414" },
+                    bar: { color: "#11C8E4"},
+                    bgcolor: "#B5F5F5",
+                    borderwidth: 2,
+                    bordercolor: "#757A7A",
+                }
+            }];
+
+            Plotly.react('humidity', newData, layout);
+        }
+    </script>
+
+    <script> //uv index
+        var xUv = [1];
+        var yUv = ['yaxis'];
+
+        function getColor(xValue) {
+            if (xValue === 1) {
+                return '#23a638';
+            } 
+            else if (xValue === 2) {
+                return '#8cbe2d';
+            } 
+            else if (xValue === 3) {
+                return '#cad51d';
+            } 
+            else if (xValue === 4) {
+                return '#f8ea19';
+            } 
+            else if (xValue === 5) {
+                return '#f5b51b';
+            } 
+            else if (xValue === 6) {
+                return '#ee7415';
+            } 
+            else if (xValue === 7) {
+                return '#ea5716';
+            } 
+            else if (xValue === 8) {
+                return '#e84916';
+            } 
+            else if (xValue === 9) {
+                return '#e52214';
+            } 
+            else if (xValue === 10) {
+                return '#a5205a';
+            } 
+            else if (xValue === 11) {
+                return '#6a2481';
+            } 
+            else {
+                return '#11C8E4'; // Default color
+            }
+        }
+
+        var trace = {
+            x: xUv,
+            y: yUv,
+            xaxis: 'x1',
+            yaxis: 'y1',
+            type: 'bar',
+            marker: {
+                color: xUv.map(getColor),
+            },
+            orientation: 'h'
+        };
+
+        var data = [trace];
+
+        var uvLayout = {
+            xaxis1: {
+                range: [0, 11],
+                domain: [0, 1],
+                zeroline: false,
+                showline: false,
+                showticklabels: true,
+                showgrid: false,
+                steps: [
+                    { range: [0, 5], color: "cyan" },
+                    { range: [5, 11], color: "royalblue" }
+                ],
+            },
+            width: 600,
+            height: 50,
+            margin: { t: 0, r: 0, l: 0, b: 0 },
+            paper_bgcolor: '251c1c00',
+            plot_bgcolor: 'F2F2F2',
+        };
+
+        Plotly.newPlot('uvindex', data, uvLayout);
+
+        //update graph
+        //update graph
+        function updateUvGraph(uvValue) {
+            // Define colors corresponding to each UV index value
+            var colors = [
+                '#11C8E4', // 0
+                '#23a638', // 1
+                '#8cbe2d', // 2
+                '#cad51d', // 3
+                '#f8ea19', // 4
+                '#f5b51b', // 5
+                '#ee7415', // 6
+                '#ea5716', // 7
+                '#e84916', // 8
+                '#e52214', // 9
+                '#a5205a', // 10
+                '#6a2481'  // 11
+            ];
+
+            var newTrace = {
+                x: [uvValue],
+                y: ['yaxis'],
+                xaxis: 'x1',
+                yaxis: 'y1',
+                type: 'bar',
+                marker: {
+                    color: colors[uvValue], // Use uvValue to index the color array
+                },
+                orientation: 'h'
+            };
+
+            var newUvData = [newTrace];
+
+            Plotly.react('uvindex', newUvData, uvLayout);
+        }
+    </script>
 </body>
 
 <footer>
@@ -98,6 +337,7 @@
         <h4>About Us</h4>
         <p>We’re an open source service for collecting real time weather data on remote locations. Using community propped stations, Lancefy collects and stores weather data for everyone.</p>
     </div>
+
     <!--SOCIALS-->
     <div class="socials">
         <ul>
@@ -106,6 +346,7 @@
             <li><a href="https://discord.com/invite/HZ9RM4P6xt" target="_blank"><button type="button"><img src="Icons\discord-logo.png"></button></li></a>
         </ul>
     </div>
+
     <!--SUPPORT-->
     <div class="support">
         <h4>Support</h4>

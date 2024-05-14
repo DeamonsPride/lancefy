@@ -1,0 +1,14 @@
+Web pages for Lancefy System
+
+Home
+About
+Files
+Dashboard
+
+Mjeri se:
+temp
+vlaga
+tlak
+uv zračenje
+brzina vijetra
+kvaliteta zraka

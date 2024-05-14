@@ -60,7 +60,7 @@
   background-color: #F2F2F2;
   box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.733);
 
-  z-index: 10;
+  z-index: 100;
 }
 
 .exdash{
@@ -91,6 +91,11 @@
 #city{
   font-weight: 1000;
   font-size: 50px;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: row;
 }
 
 #temp{
@@ -137,7 +142,7 @@
   align-items: center;
 }
 
-.humidity-number{
+/*.humidity-number{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -159,7 +164,7 @@
   font-size: 34px;
   color: #757A7A;
   position: absolute;
-}
+}*/
 
 .wind{
   display: flex;
@@ -206,7 +211,7 @@
 /*-----BLUE REGION-----*/
 
 .blue{
-  background-color: #11C8E4;
+  background-color: #3e6141;
   min-height: 1200px;
   position: relative;
   display: flex;
