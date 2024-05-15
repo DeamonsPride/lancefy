@@ -39,7 +39,7 @@
     <!--DASHBOARD HEADER-->
     <div class="dash-header">
         <div class="dash-container">
-            <h3>JuznoSAZgC01</h3> <!--var-->
+            <h3>HelenaSAZgC01</h3> <!--var-->
             <div class="search"></div>
         </div>
     </div>
@@ -285,121 +285,137 @@
     <!--FETCH-->
     <script>
 
-
-        //TEMPERATURE FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
-            method: 'GET',
+        // AUTHENTICATION FETCH
+        fetch('http://193.122.14.71:8085/api/auth/login', {
+            method: 'POST',
             headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
+            body: JSON.stringify({
+                "username": "admin@esclone.com", 
+                "password": "82aTiLGM&"
+            }),
             mode: 'cors',
             cache: 'default',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                const temperatureValue = data.temperature[0].value; // Access the temperature value from the response
-                document.getElementById("temp").innerHTML = temperatureValue;
-            })
-            .catch(error => console.error('Error fetching data:', error));
+                console.log('Authentication response:', data);
+                const token = data.token;
+
+                //TEMPERATURE FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const temperatureValue = data.temperature[0].value; // Access the temperature value from the response
+                        document.getElementById("temp").innerHTML = temperatureValue;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+                //PRESSURE FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=pressure', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const pressureValue = data.pressure[0].value;
+                        document.getElementById("press").innerHTML = pressureValue;
+                        updatePressureGraph(pressureValue);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+                //DEW POINT FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=dewPoint', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const dewValue = data.dewPoint[0].value;
+                        document.getElementById("dew").innerHTML = dewValue;
+                        updateDewGraph(dewValue);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+                //HUMIDITY FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const humidityValue = data.humidity[0].value;
+                    document.getElementById("hum").innerHTML = humidityValue;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+                //UV INDEX FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const uvValue = data.uvIndex[0].value;
+                        document.getElementById("uv").innerHTML = uvValue;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
 
 
-        //PRESSURE FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=pressure', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const pressureValue = data.pressure[0].value;
-                document.getElementById("press").innerHTML = pressureValue;
-                updatePressureGraph(pressureValue);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-
-
-        //DEW POINT FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=dewPoint', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const dewValue = data.dewPoint[0].value;
-                document.getElementById("dew").innerHTML = dewValue;
-                updateDewGraph(dewValue);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-
-
-        //HUMIDITY FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            const humidityValue = data.humidity[0].value;
-            document.getElementById("hum").innerHTML = humidityValue;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-
-
-        //UV INDEX FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const uvValue = data.uvIndex[0].value;
-                document.getElementById("uv").innerHTML = uvValue;
-            })
-            .catch(error => console.error('Error fetching data:', error));
-
-
-        //HEAT INDEX FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=heatIndex', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const heatValue = data.heatIndex[0].value;
-                document.getElementById("heat").innerHTML = heatValue;
-            })
-            .catch(error => console.error('Error fetching data:', error));
+                //HEAT INDEX FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=heatIndex', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const heatValue = data.heatIndex[0].value;
+                        document.getElementById("heat").innerHTML = heatValue;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+                    })
+                    .catch(error => console.error('Error fetching token:', error));
     </script>
  
     <!--<script> //light chart

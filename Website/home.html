@@ -100,63 +100,81 @@
     <!--FETCH-->
     <script>
 
-
-        //TEMPERATURE FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
-            method: 'GET',
+        // AUTHENTICATION FETCH
+        fetch('http://193.122.14.71:8085/api/auth/login', {
+            method: 'POST',
             headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
+            body: JSON.stringify({
+                "username": "admin@esclone.com", 
+                "password": "82aTiLGM&"
+            }),
             mode: 'cors',
             cache: 'default',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                const temperature = data.temperature[0].value; // Access the temperature value from the response
-                const markup = `<p id="temp">${temperature}</p>`;
-                document.querySelector('p').insertAdjacentHTML('afterend', markup);
+                console.log('Authentication response:', data);
+                const token = data.token;
+
+                //TEMPERATURE FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('Temperature response:', data);
+                    const temperature = data.temperature[0].value;
+                    const markup = `<p id="temp">${temperature}</p>`;
+                    document.querySelector('p').insertAdjacentHTML('afterend', markup);
+                })
+                .catch(error => console.error('Error fetching temperature:', error));
+
+                //HUMIDITY FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const humidityValue = data.humidity[0].value;
+                    updateHumidityGraph(humidityValue);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+                //UV FETCH
+                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
+                    method: 'GET',
+                    headers: {
+                        'X-Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'default',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const uvValue = data.uvIndex[0].value;
+                        updateUvGraph(uvValue);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
             })
-            .catch(error => console.error('Error fetching data:', error));
-
-
-        //HUMIDITY FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            const humidityValue = data.humidity[0].value;
-            updateHumidityGraph(humidityValue);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-
-
-        //UV FETCH
-        fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
-            method: 'GET',
-            headers: {
-                'X-Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYW1pZS5tYXJqYW5pY0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2MzMyOWM5MC0xMDY0LTExZWYtOWNjNC1mNThkMGVkYzA3ZTYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjBmNzI5YjMxLTM4ZjktNDczNS1iYWQyLWFlZGYzZDgxMjZmZCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNzE1NzE4MDU0LCJleHAiOjE3MTU3MjcwNTQsImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6Ik1hcmphbmnEhyIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiJjY2QyYzJlMC1mYjNmLTExZWUtOTI5Zi02YmJkMDA2Y2MwMTMiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.Qut9n1E59jKQSM7jdc-czwKDcVFf8J6xLo-F7oREbOLn7Gpj5MWOQQsII9O-ba_LCY77MlYbBnbw4TCcVwNP4w',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const uvValue = data.uvIndex[0].value;
-                updateUvGraph(uvValue);
-            })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching token:', error));
     </script>
 
 
@@ -185,7 +203,7 @@
             height: 270,
             margin: { t: 0, r: 0, l: 0, b: 0 },
             paper_bgcolor: "251c1c00",
-            font: { color: "#131414", family: "Inter" }
+            font: { color: "#131414", family: "Inter" },
         };
 
         Plotly.newPlot('humidity', data, layout);
@@ -289,6 +307,7 @@
             margin: { t: 0, r: 0, l: 0, b: 0 },
             paper_bgcolor: '251c1c00',
             plot_bgcolor: 'F2F2F2',
+            barcornerradius: 30,
         };
 
         Plotly.newPlot('uvindex', data, uvLayout);
