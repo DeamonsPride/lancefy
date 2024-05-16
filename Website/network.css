@@ -155,7 +155,7 @@ body{
     flex-direction: row;
 }
 
-#weather-num{
+.weather-num{
     font-family: inter;
     font-weight: 300;
     font-size: 70px;

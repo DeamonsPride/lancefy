@@ -1,18 +1,24 @@
-var device = '';
+// Retrieve the device value from localStorage if available
+var device = localStorage.getItem('device') || '';
+
 function station(name) {
     if (name === 'avenijazaggzc01') {
         device = '41264160-fb47-11ee-9cc4-f58d0edc07e6';
     } else if (name === 'helenasmbzgc01') {
-        device = 'placeholder'; // Reset device to empty string for other cases
+        device = 'placeholder'; 
+    } else {
+        device = '41264160-fb47-11ee-9cc4-f58d0edc07e6';
     }
     console.log('Device set to:', device);
+    // Store the device value in localStorage
+    localStorage.setItem('device', device);
+    fetchData();
 }
 
 console.log('Device set to:', device);
 
-function fetchDataForDevice(device) {
-    console.log('Fetching data for device:', device);
-    if (device) {
+// Function to fetch data
+function fetchData() {
 // AUTHENTICATION FETCH
 fetch('http://193.122.14.71:8085/api/auth/login', {
     method: 'POST',
@@ -262,11 +268,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             .catch(error => console.error('Error fetching data:', error));
     })
     .catch(error => console.error('Error fetching token:', error));
-} 
 }
-// Function to update the device variable
-function updateDevice(newDevice) {
-    device = newDevice;
-    console.log('Device set to:', device);
-    fetchDataForDevice(device); // Call fetch function whenever device is updated
-}  
+
+// Initial fetch when the page loads
+fetchData();
