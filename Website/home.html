@@ -16,6 +16,7 @@
      </style>
      <link rel="stylesheet" href="home.css">
      <link rel="stylesheet" href="standard.css">
+     <script type = "text/javascript" src="api.js"></script> 
      <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
 </head>
 
@@ -118,25 +119,6 @@
             .then(data => {
                 console.log('Authentication response:', data);
                 const token = data.token;
-
-                //TEMPERATURE FETCH
-                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=temperature', {
-                    method: 'GET',
-                    headers: {
-                        'X-Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    mode: 'cors',
-                    cache: 'default',
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('Temperature response:', data);
-                    const temperature = data.temperature[0].value;
-                    const markup = `<p id="temp">${temperature}</p>`;
-                    document.querySelector('p').insertAdjacentHTML('afterend', markup);
-                })
-                .catch(error => console.error('Error fetching temperature:', error));
 
                 //HUMIDITY FETCH
                 fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
