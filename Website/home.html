@@ -292,9 +292,10 @@
             barcornerradius: 30,
         };
 
-        Plotly.newPlot('uvindex', data, uvLayout);
+        var config = { responsive: true };
 
-        //update graph
+        Plotly.newPlot('uvindex', data, uvLayout, config);
+
         //update graph
         function updateUvGraph(uvValue) {
             // Define colors corresponding to each UV index value
@@ -325,9 +326,10 @@
                 orientation: 'h'
             };
 
+            var config = { responsive: true };
             var newUvData = [newTrace];
 
-            Plotly.react('uvindex', newUvData, uvLayout);
+            Plotly.react('uvindex', newUvData, uvLayout, config);
         }
     </script>
 </body>
@@ -352,7 +354,7 @@
     <div class="support">
         <h4>Support</h4>
         <p><a href="mailto:support@okamicrafts.net" target="_blank">Mail support</a></p>
-        <a href="https://discord.com/channels/1174335863749091338/1174355193710784552" target="_blank">Discord support</a>
+        <a href="https://discord.com/channels/907200801901010955/1170793744782589984" target="_blank">Discord support</a>
     </div>
 </footer>
 </html>

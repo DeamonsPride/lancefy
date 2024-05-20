@@ -40,7 +40,7 @@
     <!--DASHBOARD HEADER-->
     <div class="dash-header">
         <div class="dash-container">
-            <h3>HelenaSAZgC01</h3> <!--var-->
+            <h3 id="stationname"></h3> <!--var-->
             <div class="search"></div>
         </div>
     </div>
@@ -133,7 +133,7 @@
                         <div id="luxGraph"></div> 
                         <div class="card4-number">
                             <p id="lux" class="card4-variable"></p> <!--var-->
-                            <p class="card4-unit">Lux</p>
+                            <p class="card4-unit">lx</p>
                         </div>
                     </div>
                 </div>
@@ -361,7 +361,7 @@
         var data = [trace1];
         var config = {responsive: true}
 
-        Plotly.newPlot('wind', data, layout);
+        Plotly.newPlot('wind', data, layout, config);
     </script>
 
     <script> //pressure chart
@@ -389,7 +389,9 @@
             font: { color: "#131414", family: "Inter" }
         };
 
-        Plotly.newPlot('pressure', data, layout);
+        var config = { responsive: true };
+
+        Plotly.newPlot('pressure', data, layout, config);
 
         //update graph
         function updatePressureGraph(pressureValue) {
@@ -409,7 +411,9 @@
                 }
             ];
 
-            Plotly.react('pressure', newData, layout);
+            var config = { responsive: true };
+
+            Plotly.react('pressure', newData, layout, config);
         }
     </script>
 
@@ -495,7 +499,7 @@
     <div class="support">
         <h4>Support</h4>
         <p><a href="mailto:support@okamicrafts.net" target="_blank">Mail support</a></p>
-        <a href="https://discord.com/channels/1174335863749091338/1174355193710784552" target="_blank">Discord support</a>
+        <a href="https://discord.com/channels/907200801901010955/1170793744782589984" target="_blank">Discord support</a>
     </div>
 </footer>
 </html>

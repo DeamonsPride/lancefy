@@ -43,6 +43,7 @@ p{
 /*----CONTENT----*/
 .content{
     height: auto;
+    width: 100%;
     background-color: #F2F2F2;
     display: flex;
     flex-direction: column;

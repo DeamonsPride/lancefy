@@ -44,6 +44,41 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
         const DendTs = Date.now();
         const DstartTs = endTs - (24 * 60 * 60 * 1000);
 
+        //NAME FETCH
+        fetch(`http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=stationName`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const nameValue = data.stationName[0].value;
+                document.getElementById("stationname").innerHTML = nameValue;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        //LOCATION FETCH
+        fetch(`http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=station_location`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const locationValue = data.station_location[0].value;
+                document.getElementById("location").innerHTML = locationValue;
+            })
+            .catch(error => console.error('Error fetching data:', error));
 
         //TEMPERATURE FETCH
         fetch(`http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=temperature`, {
@@ -58,7 +93,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                const temperatureValue = data.temperature[0].value; // Access the temperature value from the response
+                const temperatureValue = data.temperature[0].value;
                 document.getElementById("temp").innerHTML = temperatureValue;
             })
             .catch(error => console.error('Error fetching data:', error));

@@ -95,7 +95,7 @@ body{
     justify-content: space-between;
 }
 
-#loc-name {
+.loc-name {
     font-family: inter;
     font-weight: 800;
     font-size: 60px;
