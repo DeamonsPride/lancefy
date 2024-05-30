@@ -145,6 +145,7 @@ body {
   max-height: 70%;
   min-height: 70%;
   align-items: center;
+  justify-content: space-between;
 }
 
 .hum-ind{
