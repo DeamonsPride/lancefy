@@ -1,79 +1,75 @@
-body{
-    background-color: #F6F6F6;
-    min-height: 50em;
-}
-
 /*----NETWORK HEADER----*/
 .files-header {
-    position: fixed;
     left: 0;
+    max-width: 100%;
     width: 100%;
     z-index: 101;
-    transition: top .3s;
-    margin-top: 3.5%;
     
     justify-content: center;
     align-items: center;
     max-height: 102px;
-    min-height: 8%;
+    min-height: 4.2vw;
     background-color: #11C8E4;
-    box-shadow: 0px  7px  6px rgba(0, 0, 0, 0.247);
+    box-shadow: 0vw  0.5vw  0.3vw rgba(0, 0, 0, 0.075);
   
     z-index: 100;
-  }
-  
-  .files-container {
+}
+
+.files-container {
     max-width: 90%;
-      
+        
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
-  
-    max-height: 102px;
-    min-height: 8%;
-    
-    padding: 0.8% 3%;
+
+    min-height: 4.2vw;
+
     position: relative;
     display:flex;
     align-items: center;
     background-color: rgba(0, 83, 156, 0);
-  }
+}
 
-#name{
+#name {
     font-family: inter;
     font-weight: 600;
-    font-size: 40px;
     text-align: left;
-  
+    font-size: 2.5vw;
+
     color: #F6F6F6;
-  
-    z-index: 200;
 }
 
 /*---CONTENT---*/
+.content{
+    height: 80%;
+    width: 100%;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8.4vw;
+}
+
 .box{
     background-color: #ffffff;
-    border-radius: 30px;
-    box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.25);
+    border-radius: 2vw;
+    box-shadow: 1vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
 
-    min-height: 25em;
-    min-width: 10em;
-    max-width: 90%;
+    height: auto;
+    width: 80%;
     z-index: 90;
     display: flex;
     flex-direction: column;
-    top: 12.5em;
-    left: 3%;
-    padding: 2em;
+    padding: 2vw 2vw 0vw 2vw;
     justify-content: space-between;
-    margin-bottom: 20em;
 
     position: relative;
 }
 
-.content{
+.box-content{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .single-content{
@@ -83,8 +79,10 @@ body{
     justify-content: space-between;
 
     background-color: #F6F6F6;
-    border-radius: 30px;
-    padding: 2em;
+    border-radius: 2vw;
+    padding: 2vw;
+    margin-bottom: 2vw;
+    box-shadow: 0.3vw  0.3vw  0.3vw rgba(0, 0, 0, 0.096);
 }
 
 .single-content-main{
@@ -94,15 +92,15 @@ body{
 }
 
 .content-img{
-    max-width: 4em;
+    width: 3vw;
 }
 
 .download-text{
     font-family: inter;
     font-weight: 300;
-    font-size: 40px;
+    font-size: 2vw;
     text-align: left;
-    margin-left: 2em;
+    margin-left: 1vw;
   
     color: #130E01;
   
@@ -110,6 +108,6 @@ body{
 }
 
 .download-img{
-    max-width: 3em;
-    max-height: 3em;
+    width: 2vw;
+    height: 2vw;
 }

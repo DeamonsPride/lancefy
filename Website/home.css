@@ -1,3 +1,7 @@
+body {
+  background-color: #3e6141;
+}
+
 /*-----HERO------*/
 #hero{
   width: 100%;
@@ -7,6 +11,7 @@
 
 #transition{
   position: absolute;
+  min-width: 100%;
   max-width: 100%;
 
   z-index: 100;
@@ -15,6 +20,7 @@
 #trans-shadow{
   position: absolute;
   margin-top: 3%;
+  min-width: 100%;
   max-width: 100%;
   
   z-index: 1;
@@ -45,35 +51,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 40;
   }
 
 
 
 /*-----EXAMPLE DASHBOARD------*/
 .exdashback{
-  min-height: 2000px;
-  max-height: 2000px;
+  width: 100%;
+  height: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: #F2F2F2;
-  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.733);
+  box-shadow: 0vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
   z-index: 100;
 }
 
 .exdash{
-  min-width: 60%;
-  max-width: 60%;
-  max-height: 80%;
+  width: 60vw;
   position: absolute;
   display: flex;
   border-radius: 35px;
   margin-top: 25%;
   
   background-color: #FFFFFF;
-  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.24);
+  box-shadow: 2vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
   z-index: 100;
 }
@@ -90,7 +95,7 @@
 
 #city{
   font-weight: 1000;
-  font-size: 50px;
+  font-size: 3vw;
 }
 
 .temperature {
@@ -99,11 +104,16 @@
 }
 
 #temp{
-  font-size: 50px;
+  font-size: 3.5vw;
+}
+
+#deg {
+  font-size: 1.7vw;
+  color: #757A7A;
 }
 
 #descr{
-  font-size: 42px;
+  font-size: 2vw;
 }
 
 #weather-icon{
@@ -124,7 +134,7 @@
 }
 
 .indexname{
-  font-size: 34px;
+  font-size: 1.7vw;
 }
 
 .humidity{
@@ -187,16 +197,17 @@
 }
 
 #wind-num{
-  font-size: 26px;
+  font-size: 1.5vw;
 }
 
 #wind-unit{
-  font-size: 20px;
+  font-size: 0.8vw;
   color: #757A7A;
 }
 
 #wind-icon{
-  max-width: 70%;
+  margin-top: 1vw;
+  width: 12vw;
 }
 
 .uvindex{
@@ -211,8 +222,8 @@
 /*-----BLUE REGION-----*/
 
 .blue{
-  background-color: #3e6141;
-  min-height: 1200px;
+  width: 100%;
+  height: 70vw;
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -222,7 +233,6 @@
 }
 
 .card{
-  min-height: 100%;
   max-width: 40%;
   display: flex;
   justify-content: flex-start;
@@ -230,24 +240,30 @@
   margin-right: 5%;
   padding: 3%;
   padding-left: 22%;
-  margin-top: 10%;
 
   border-radius: 35px;
   background-color: #ffffff;
-  box-shadow: 30px  30px  3px rgba(0, 0, 0, 0.24);
+  box-shadow: 2vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
   z-index: 10;
 }
 
+.blue-p {
+  margin-top: 1vw;
+}
+
 .blue-p p{
   text-align: left;
-  font-size: 26px;
+  font-size: 1.5vw;
+  margin-top: 0.5vw;
 }
 
 #lance{
   max-width: 42%;
   position: absolute;
   margin-right: 50%;
+  -webkit-filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
+  filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
 
   z-index: 20;
 }
