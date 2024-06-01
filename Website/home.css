@@ -2,7 +2,10 @@ body {
   background-color: #3e6141;
 }
 
+
+
 /*-----HERO------*/
+
 #hero{
   width: 100%;
 
@@ -19,9 +22,10 @@ body {
 
 #trans-shadow{
   position: absolute;
-  margin-top: 3%;
   min-width: 100%;
   max-width: 100%;
+
+  margin-top: 3%;
   
   z-index: 1;
 }
@@ -37,29 +41,32 @@ body {
 #word-shadow{
   max-width: 60%;
   position: absolute;
+
   margin-left: 1%;
   margin-top: 1%;
 
   z-index: 50;
 }
 
-  /*-----BANNER-----*/
+.banner{
+  height: 100%;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  .banner{
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 40;
-  }
+  z-index: 40;
+}
 
 
 
 /*-----EXAMPLE DASHBOARD------*/
+
 .exdashback{
   width: 100%;
   height: 100vw;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +80,12 @@ body {
 .exdash{
   width: 60vw;
   position: absolute;
+
   display: flex;
-  border-radius: 35px;
+
   margin-top: 25%;
-  
+
+  border-radius: 2vw;
   background-color: #FFFFFF;
   box-shadow: 2vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
@@ -84,9 +93,10 @@ body {
 }
 
 .basic-info{
+  max-width: 20%;
+
   display: flex;
   flex-direction: column;
-  max-width: 20%;
   align-items: center;
   justify-content: space-between;
 
@@ -112,25 +122,24 @@ body {
   color: #757A7A;
 }
 
-#descr{
+.descr{
   font-size: 2vw;
 }
 
-#weather-icon{
+.weather-icon{
   max-width: 90%;
 }
 
 .extra-info{
+  max-width: 80%;
+  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 80%;
   align-items: center;
   justify-content: flex-start;
 
-  padding-top: 6%;
-  padding-bottom: 6%;
-  padding-right: 6%;
+  padding: 6%;
 }
 
 .indexname{
@@ -138,12 +147,13 @@ body {
 }
 
 .humidity{
-  display: flex;
-  flex-direction: column;
   max-width: 50%;
   min-width: 50%;
   max-height: 70%;
   min-height: 70%;
+  
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
@@ -153,46 +163,25 @@ body {
   align-items: center;
 }
 
-/*.humidity-number{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  margin-top: -40%;
-}
-
-#humidity-index{
-  max-width: 100%;
-}
-
-#humidity-num{
-  font-size: 58px;
-  position: absolute;
-}
-
-#humidity-unit{
-  font-size: 34px;
-  color: #757A7A;
-  position: absolute;
-}*/
-
 .wind{
-  display: flex;
-  flex-direction: column;
   max-width: 50%;
   min-width: 50%;
   max-height: 70%;
   min-height: 70%;
+
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .wind-numer{
+  position: absolute;
+
   display: flex;
   flex-direction: row;
-  position: absolute;
-  margin-top: 5%;
   align-items: baseline;
+
+  margin-top: 5%;
 
   z-index: 200;
 }
@@ -213,11 +202,14 @@ body {
 
 .uvindex{
   max-height: 30%;
+  min-width: 100%;
+
   display: flex;
   flex-direction: column;
-  min-width: 100%;
+
   padding: 4%;
 }
+
 
 
 /*-----BLUE REGION-----*/
@@ -226,6 +218,7 @@ body {
   width: 100%;
   height: 70vw;
   position: relative;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -235,14 +228,16 @@ body {
 
 .card{
   max-width: 40%;
+
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  margin-right: 5%;
+  justify-content: flex-start;
+
   padding: 3%;
   padding-left: 22%;
+  margin-right: 5%;
 
-  border-radius: 35px;
+  border-radius: 2vw;
   background-color: #ffffff;
   box-shadow: 2vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
@@ -262,7 +257,9 @@ body {
 #lance{
   max-width: 42%;
   position: absolute;
+  
   margin-right: 50%;
+  
   -webkit-filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
   filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
 

@@ -77,6 +77,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
                 console.log(data);
                 const locationValue = data.station_location[0].value;
                 document.getElementById("location").innerHTML = locationValue;
+                document.getElementById("city").innerHTML = locationValue;
             })
             .catch(error => console.error('Error fetching data:', error));
 
@@ -112,9 +113,45 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                const pressureValue = data.pressure[0].value;
+                const pressureValue = data.pressure[0].value;    
                 document.getElementById("press").innerHTML = pressureValue;
                 updatePressureGraph(pressureValue);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        //PRESSURE FETCH
+        fetch(`http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=pressure`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const pressureValue = data.pressure[0].value;
+                var img = document.getElementById('imgWeather');
+                var weatherValue = "error";
+                if (pressureValue <= 960) {
+                    var weatherValue = "Storm";
+                    img.src = 'Icons/Storm-Icon.png';
+                } else if (pressureValue > 960 && pressureValue <= 980) {
+                    var weatherValue = "Rain";
+                    img.src = 'Icons/Rainy-Icon.png';
+                } else if (pressureValue > 980 && pressureValue <= 1010) {
+                    var weatherValue = "Cloudy";
+                    img.src = 'Icons/Cloudy-Icon.png';
+                } else if (pressureValue > 1010 && pressureValue <= 1040) {
+                    var weatherValue = "Sunny";
+                    img.src = 'Icons/PartlyCloudy-Icon.png';
+                } else if (pressureValue > 1040) {
+                    var weatherValue = "Dry";
+                    img.src = 'Icons/Sunny-Icon.png';
+                }
+                document.getElementById("weatherStatus").innerHTML = weatherValue;
             })
             .catch(error => console.error('Error fetching data:', error));
 

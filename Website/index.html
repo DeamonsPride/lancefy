@@ -20,6 +20,8 @@
      <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
 </head>
 
+
+
 <body>
     <div class="headers">
         <!--HEADER-->
@@ -31,12 +33,13 @@
                     <ul class="navbar">
                         <li><a href="network.html"><button class="nav" type="button">network</button></li></a>
                         <li><a href="dashboard.html"><button class="nav" type="button">dashboard</button></li></a>
-                        <li><a href="dashboard.html"><button class="nav" type="button">about</button></li></a>
+                        <li><a href="about.html"><button class="nav" type="button">about</button></li></a>
                         <li><a href="files.html"><button class="nav" type="button">files</button></li></a>
                     </ul>
             </div>
         </div>
     </div>
+
     <!---HERO-->
     <div class="banner">
         <img id="hero" src="Images\Banner.png">
@@ -47,6 +50,7 @@
         <img id="transition" src="Images\b-layer1-invert.png">
         <img id="trans-shadow" src="Images\Banner-shadow-invert.png">
     </div>
+
     <!--EXAMPLE DASHBOARD-->
     <div class="exdashback">
         <div class="exdash">
@@ -56,19 +60,14 @@
                     <p id="temp"></p> <!--var-->
                     <p id="deg">°</p>
                 </div>
-                <p id="descr">Cloudy</p> <!--var-->
-                <img id="weather-icon" src="Icons\Cloudy-Icon.png"> 
+                <p id="weatherStatus" class="descr"></p> <!--var-->
+                <img id="imgWeather" class="weather-icon"> <!--var-->
             </div>
             <div class="extra-info">
                 <div class="humidity">
                     <p class="indexname">Humidity</p>
                     <div class="hum-ind">
-                        <!--<img id="humidity-index" src="Icons\Humidity-Icon-default.png">
-                        <div class="humidity-number">
-                            <p id="humidity-num">82</p>
-                            <p id="humidity-unit">%</p>
-                        </div>-->
-                        <div id="humidity"></div>
+                        <div id="humidity"></div> <!--graph-->
                     </div>
                 </div>
                 <div class="wind">
@@ -81,18 +80,19 @@
                 </div>
                 <div class="uvindex">
                     <p class="indexname">UV Index</p>
-                    <div id="uvindex"></div>
+                    <div id="uvindex"></div> <!--graph-->
                 </div>
             </div>
         </div>
     </div>
-    <!--BLUE REGION-->
+
+    <!--GREEN REGION-->
     <div class="blue">
         <img id="lance" src="Images\Lance.png">
         <div class="card">
             <h1>Lancefy Network</h1>
             <div class="blue-p">
-                <p>Open source service for collecting real time weather information on remote locations. It is currently being set up in Croatia, but with the help of the Lancefy community it could reach out even further.</p>
+                <p>Lancefy Network is an open source service for collecting real time weather information on remote locations. It is currently being set up in Croatia, but with the help of the Lancefy community it could reach out even further.</p>
                 <P>It allows users to collect data of our increasingly changing climate whilst also providing them with the tools needed to gather more data. Using community propped stations, Lancefy collects and stores weather data available for anybody to use. </P>
                 <p>Weather for all.</p>
             </div>
@@ -100,9 +100,11 @@
     </div>
 
 
+    <!--SCRIPTS-->
+    
+
     <!--FETCH-->
     <script>
-
         // AUTHENTICATION FETCH
         fetch('http://193.122.14.71:8085/api/auth/login', {
             method: 'POST',
@@ -160,7 +162,6 @@
             })
             .catch(error => console.error('Error fetching token:', error));
     </script>
-
 
     <!--GRAPHS-->
     <script> //humidity graph
@@ -271,7 +272,7 @@
         var xUv = [1];
         var yUv = ['yaxis'];
 
-        function getColor(xValue) {
+        function getColor(xValue) { //bar colour change
             if (xValue === 1) {
                 return '#23a638';
             } 
@@ -306,7 +307,7 @@
                 return '#6a2481';
             } 
             else {
-                return '#11C8E4'; // Default color
+                return '#11C8E4'; //default color
             }
         }
 
@@ -352,20 +353,20 @@
         //update graph
         function updateUvGraph(uvValue) {
             const screenWidth = window.innerWidth;
-            // Define colors corresponding to each UV index value
+            // defining colors for UV index values
             var colors = [
-                '#11C8E4', // 0
-                '#23a638', // 1
-                '#8cbe2d', // 2
-                '#cad51d', // 3
-                '#f8ea19', // 4
-                '#f5b51b', // 5
-                '#ee7415', // 6
-                '#ea5716', // 7
-                '#e84916', // 8
-                '#e52214', // 9
-                '#a5205a', // 10
-                '#6a2481'  // 11
+                '#11C8E4', //0
+                '#23a638', //1
+                '#8cbe2d', //2
+                '#cad51d', //3
+                '#f8ea19', //4
+                '#f5b51b', //5
+                '#ee7415', //6
+                '#ea5716', //7
+                '#e84916', //8
+                '#e52214', //9
+                '#a5205a', //10
+                '#6a2481'  //11
             ];
 
             var newTrace = {
@@ -473,6 +474,8 @@
         }
     </script>
 </body>
+
+
 
 <footer>
     <!--ABOUT US-->

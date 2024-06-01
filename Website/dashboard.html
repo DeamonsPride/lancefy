@@ -22,9 +22,12 @@
     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
 </head>
 
+
+
 <body onload="startTime()">
     <!--HEADERS-->
     <div class="headers">
+
         <!--HEADER-->
         <div class="global-header">
             <div class="container">
@@ -34,11 +37,12 @@
                     <ul class="navbar">
                         <li><a href="network.html"><button class="nav" type="button">network</button></li></a>
                         <li><a href="dashboard.html"><button class="nav" type="button">dashboard</button></li></a>
-                        <li><a href="dashboard.html"><button class="nav" type="button">about</button></li></a>
+                        <li><a href="about.html"><button class="nav" type="button">about</button></li></a>
                         <li><a href="files.html"><button class="nav" type="button">files</button></li></a>
                     </ul>
             </div>
         </div>
+
         <!--DASHBOARD HEADER-->
         <div class="dash-header">
             <div class="dash-container">
@@ -46,6 +50,7 @@
             </div>
         </div>
     </div>
+
     <!--CONTENT-->
     <div class="content">
 
@@ -56,7 +61,7 @@
             <div class="left-cards">
                 <div class="upper-left">
                     <div class="curr-weath">
-                        <img id="current-weather" src="Icons\Rainy-Icon.png">
+                        <img id="imgWeather" class="current-weather">
                         <div class="temp-degr">
                             <p id="temp"></p> <!--var-->
                             <p id="degree">°</p>
@@ -66,14 +71,14 @@
                 <div class="lower-left">
                     <div class="location">
                         <img id="location" src="Icons\Location-Icon.png">
-                        <p>Samobor</p> <!--var-->
+                        <p id="city"></p> <!--var-->
                         <p id="comma">, </p>
-                        <p>Croatia</p> <!--var-->
+                        <p>Croatia</p>
                     </div>
-                    <div class="time">
+                    <div class="time"> 
                         <img id="calendar" src="Icons\Calendar-Icon.png">
-                        <p id="current-date"></p>
-                        <div id="clock"></div>
+                        <p id="current-date"></p> <!--var-->
+                        <div id="clock"></div> <!--var-->
                     </div>
                 </div>
             </div>
@@ -81,21 +86,19 @@
             <!--card 2-->
             <div class="right-cards">
                 <div class="second-card">
-                    <!--<section class="pyscript first">
-                        <div id="avg"></div>
-                        <script type="py" src="./avarages.py" config="./pyscript.toml"></script>
-                    </section>-->
-                    <div id="temperature-humidity"></div>
+                    <div id="temperature-humidity"></div> <!--graph-->
                 </div>
             </div>
         </div>
+
+
         <!--second row-->
         <div class="row">
 
             <!--card 3-->
             <div class="left-cards">
                 <div class="upper-left-3">
-                    <div id="absolutehumidity"></div>
+                    <div id="absolutehumidity"></div> <!--graph-->
                 </div>
                 <div class="lower-left-3">
                     <p class="card4-header">Absolute Humidity</p>
@@ -114,7 +117,7 @@
                 <div class="upper-four">
                     <div class="card4-card">
                         <p class="card4-header">Wind Status</p>
-                        <div class="card4-graphs" id="wind"></div> 
+                        <div class="card4-graphs" id="wind"></div>  <!--graph-->
                         <div class="card4-number">
                             <p class="card4-variable">7.90</p> <!--var-->
                             <p class="card4-unit">km/h</p>
@@ -122,7 +125,7 @@
                     </div>
                     <div class="card4-card">
                         <p class="card4-header">Pressure</p>
-                        <div class="card4-graphs" id="pressure"></div> 
+                        <div class="card4-graphs" id="pressure"></div> <!--graph-->
                         <div class="card4-number">
                             <p id="press" class="card4-variable"></p> <!--var-->
                             <p class="card4-unit">hPa</p>
@@ -130,7 +133,7 @@
                     </div>
                     <div class="card4-card">
                         <p class="card4-header">Lux Level</p>
-                        <div id="luxGraph" class="card4-graphs"></div> 
+                        <div id="luxGraph" class="card4-graphs"></div> <!--graph-->
                         <div class="card4-number">
                             <p id="lux" class="card4-variable"></p> <!--var-->
                             <p class="card4-unit">lx</p>
@@ -174,15 +177,16 @@
         </div>
     </div>
 
+
+    <!--SCRIPTS-->
+
+
     <script>
-
-
-        //DATE
+        //date
         const d = new Date().toLocaleDateString('en-us', {day:"numeric", month:"numeric", year:"numeric",});
         document.getElementById("current-date").innerHTML = d;
 
-
-        //TIME
+        //time
         function startTime() {
           const today = new Date();
           let h = today.getHours();
@@ -195,13 +199,12 @@
         }
         
         function checkTime(i) {
-          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          if (i < 10) {i = "0" + i};  //add zero in front of numbers<10
           return i;
         }
     </script>
 
     <!--GRAPHS-->
-
     <div>
         <script> //temperature & humidity chart
             function updateHumidityAndTemperatureGraph(minHumidity, maxHumidity, medianTemperature) {
@@ -261,7 +264,8 @@
                             y: 1.1,
                             bgcolor: 'rgba(255, 255, 255, 0)',
                             bordercolor: 'rgba(255, 255, 255, 0)',
-                            orientation: "h"
+                            orientation: "h",
+                            font: { family: 'inter', size: 12, color: '#130E01'},
                         },
                         barmode: 'group',
                         bargap: 0.1,
@@ -296,11 +300,12 @@
                             }
                         },
                         legend: {
-                            x: 0.2,
+                            x: 0.16,
                             y: 1.1,
                             bgcolor: 'rgba(255, 255, 255, 0)',
                             bordercolor: 'rgba(255, 255, 255, 0)',
-                            orientation: "h"
+                            orientation: "h",
+                            font: { family: 'inter', size: 15, color: '#130E01'},
                         },
                         barmode: 'group',
                         bargap: 0.1,
@@ -335,11 +340,12 @@
                             }
                         },
                         legend: {
-                            x: 0.27,
+                            x: 0.19,
                             y: 1.1,
                             bgcolor: 'rgba(255, 255, 255, 0)',
                             bordercolor: 'rgba(255, 255, 255, 0)',
-                            orientation: "h"
+                            orientation: "h",
+                            font: { family: 'inter', size: 20, color: '#130E01'},
                         },
                         barmode: 'group',
                         bargap: 0.1,
@@ -374,11 +380,12 @@
                             }
                         },
                         legend: {
-                            x: 0.35,
+                            x: 0.19,
                             y: 1.1,
                             bgcolor: 'rgba(255, 255, 255, 0)',
                             bordercolor: 'rgba(255, 255, 255, 0)',
-                            orientation: "h"
+                            orientation: "h",
+                            font: { family: 'inter', size: 33, color: '#130E01'},
                         },
                         barmode: 'group',
                         bargap: 0.1,
@@ -888,6 +895,8 @@
         </script>
     </div>
 </body>
+
+
 
 <footer>
     <!--ABOUT US-->
