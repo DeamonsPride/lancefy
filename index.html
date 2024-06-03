@@ -106,7 +106,7 @@
     <!--FETCH-->
     <script>
         // AUTHENTICATION FETCH
-        fetch('http://193.122.14.71:8085/api/auth/login', {
+        fetch('https://dash.esclone.com/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,7 +125,7 @@
                 const token = data.token;
 
                 //HUMIDITY FETCH
-                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
+                fetch('https://dash.esclone.com/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=humidity', {
                     method: 'GET',
                     headers: {
                         'X-Authorization': `Bearer ${token}`,
@@ -143,7 +143,7 @@
                 .catch(error => console.error('Error fetching data:', error));
 
                 //UV FETCH
-                fetch('http://193.122.14.71:8085/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
+                fetch('https://dash.esclone.com/api/plugins/telemetry/DEVICE/41264160-fb47-11ee-9cc4-f58d0edc07e6/values/timeseries?keys=uvIndex', {
                     method: 'GET',
                     headers: {
                         'X-Authorization': `Bearer ${token}`,
