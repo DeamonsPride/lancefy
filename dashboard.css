@@ -1,0 +1,326 @@
+p{
+  font-size: 1vw;
+}
+  
+
+
+/*----DASHBOARD HEADER----*/
+.dash-header {
+  max-width: 100%;
+  width: 100%;
+  min-height: 4.2vw;
+  
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: #11C8E4;
+  box-shadow: 0vw  0.5vw  0.3vw rgba(0, 0, 0, 0.075);
+  left: 0;
+
+  z-index: 101;
+}
+
+.dash-container {
+  max-width: 90%;
+  min-height: 4.2vw;
+  position: relative;
+
+  display:flex;
+  align-items: center;
+    
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+
+  background-color: rgba(0, 83, 156, 0);
+}
+
+#stationname {
+  font-size: 2vw;
+  font-weight: 600;
+}
+
+
+
+/*----CONTENT----*/
+
+.content{
+    height: auto;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 12vw;
+
+    background-color: #F2F2F2;
+}
+
+/*--First row--*/
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: start;
+  flex-direction: row;
+  padding-bottom: 5vw;
+}
+
+/*Cards*/
+.left-cards{
+  width: 20vw;
+  height: 20vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+
+  padding: 3vw;
+
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 1vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
+  
+  z-index: 10;
+}
+
+.right-cards{
+  min-width: 50vw;
+  max-width: 50vw;
+  max-height: 20vw;
+  min-height: 20vw;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+
+  padding: 3vw;
+
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 1vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
+  
+  z-index: 10;
+}
+
+/*Card 1*/
+.upper-left{
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.current-weather{
+  width: 9vw;
+}
+
+#temp{
+  font-size: 3.5vw;
+  margin: 0%;
+}
+
+.curr-weath{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.temp-degr{
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+}
+
+#degree{
+  font-size: 2vw;
+  color: #757A7A;
+  margin: 0%;
+}
+
+.lower-left{
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 3%;
+  
+  border-top: 3px solid #F2F2F2;
+}
+
+.location{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 1em;
+}
+
+#location{
+  width: 1vw;
+  margin-right: 1em;
+}
+
+#comma{
+  margin-right: 1%;
+}
+
+.time{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#calendar{
+  max-width: 6%;
+  margin-right: 1em;
+}
+
+#current-date{
+  margin-right: 3%;
+}
+
+#clock{
+  font-family: inter;
+  font-weight: 300;
+  font-size: 1vw;
+  color: #130E01;
+}
+
+/*Card 2*/
+.second-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 1em;
+}
+
+/*Card 3*/
+.third-card {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.upper-left-3{
+  display: flex;
+  align-self: center;
+  justify-content: flex-start;
+
+  margin-bottom: 1em;
+  padding-bottom: 3%;
+
+  border-bottom: 3px solid #F2F2F2;
+}
+
+.lower-left-3{
+  display: flex;
+  flex-direction: column;
+  padding-top: 3%;
+}
+
+
+
+/*Card 4*/
+.card4-header{
+  font-family: inter;
+  font-weight: 300;
+  font-size: 1.2vw;
+
+  color: #130E01;
+
+  margin: 0px;
+}
+
+.upper-four{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1em;
+}
+
+.lower-four{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.card4-number{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.card4-variable{
+  font-family: inter;
+  font-weight: 300;
+  font-size: 2vw;
+
+  color: #130E01;
+
+  margin: 0px;
+}
+
+.card4-unit{
+  font-size: 1vw;
+  color: #757A7A;
+}
+
+.card4-card{
+  min-width: 27%;
+  max-width: 27%;
+  max-height: 13vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  padding: 1vw;
+
+  background: #F2F2F2;
+  border-radius: 2vw;
+  box-shadow: 0.3vw  0.3vw  0.3vw rgba(0, 0, 0, 0.096);
+}
+
+.card4-graphs{
+  align-self: center;
+}
+
+#wind{
+  padding: 0px;
+  margin: 0px;
+}
+
+.lower-four{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.lower-four-cards{
+  width: 27%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1vw;
+  
+  background-color: #F2F2F2;
+  border-radius: 2vw;
+  box-shadow: 0.3vw  0.3vw  0.3vw rgba(0, 0, 0, 0.096);
+}
+
+.card4-lower-second{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card4-lower-img{
+  max-width: 2vw;
+  max-height: 2vw;
+  margin-right: 1em;
+}
+
