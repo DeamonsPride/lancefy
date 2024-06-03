@@ -175,7 +175,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             .catch(error => console.error('Error fetching data:', error));
 
         //HISTORICAL LUX FETCH
-        fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=luxLevel&startTs=${DstartTs}&endTs=${DendTs}&intervalType=MILLISECONDS&interval=3600000&timeZone=GMT%2B02%3A00&limit=100&agg=AVG&orderBy=ASC`, {
+        fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=luxLevel&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=31&agg=AVG&orderBy=ASC`, {
             method: 'GET',
             headers: {
                 'X-Authorization': `Bearer ${token}`,
@@ -270,7 +270,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             .catch(error => console.error('Error fetching data:', error));
 
         //HISTORICAL ABSOLUTE HUMIDITY FETCH
-        fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=absHum&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=100&agg=AVG&orderBy=ASC`, {
+        fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=absHum&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=31&agg=AVG&orderBy=ASC`, {
             method: 'GET',
             headers: {
                 'X-Authorization': `Bearer ${token}`,
@@ -294,7 +294,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
                 value: item.value
             }));
         }
-        const humidityMinFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=humidity&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=MIN&limit=30&orderBy=ASC`, {
+        const humidityMinFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=humidity&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=MIN&limit=31&orderBy=ASC`, {
             method: 'GET',
             headers: {
                 'X-Authorization': `Bearer ${token}`,
@@ -304,7 +304,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             cache: 'default',
         });
 
-        const humidityMaxFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=humidity&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=MAX&limit=30&orderBy=ASC`, {
+        const humidityMaxFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=humidity&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=MAX&limit=31&orderBy=ASC`, {
             method: 'GET',
             headers: {
                 'X-Authorization': `Bearer ${token}`,
@@ -314,7 +314,7 @@ fetch('http://193.122.14.71:8085/api/auth/login', {
             cache: 'default',
         });
 
-        const temperatureAvgFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=temperature&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=AVG&limit=30&orderBy=ASC`, {
+        const temperatureAvgFetch = fetch(`https://dash.esclone.com:443/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=temperature&startTs=${startTs}&endTs=${endTs}&interval=86400000&agg=AVG&limit=31&orderBy=ASC`, {
             method: 'GET',
             headers: {
                 'X-Authorization': `Bearer ${token}`,
