@@ -27,8 +27,8 @@ fetch('https://dash.esclone.com/api/auth/login', {
         'Accept': 'application/json'
     },
     body: JSON.stringify({
-        "username": "admin@esclone.com", 
-        "password": "82aTiLGM&"
+        "username": "lancefy@esclone.com", 
+        "password": "i40#C:n+"
     }),
     mode: 'cors',
     cache: 'default',
