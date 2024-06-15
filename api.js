@@ -60,7 +60,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 const nameValue = data.stationName[0].value;
                 document.getElementById("stationname").innerHTML = nameValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching NAME data:', error));
 
         //LOCATION FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=station_location`, {
@@ -79,7 +79,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 document.getElementById("location").innerHTML = locationValue;
                 document.getElementById("city").innerHTML = locationValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching LOCATION data:', error));
 
         //TEMPERATURE FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=temperature`, {
@@ -97,8 +97,43 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 const temperatureValue = data.temperature[0].value;
                 document.getElementById("temp").innerHTML = temperatureValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching TEMPERATURE data:', error));
 
+
+        //WIND FETCH
+        fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=wind`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const windValue = data.wind[0].value;
+                document.getElementById("win").innerHTML = windValue;
+            })
+            .catch(error => console.error('Error fetching WIND data:', error));
+
+        //HISTORICAL WIND FETCH
+        fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=wind&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=31&agg=AVG&orderBy=ASC`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            cache: 'default',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                updateWindGraph(data.wind);
+            })
+            .catch(error => console.error('Error fetching HISTORICAL WIND data:', error));
 
         //PRESSURE FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=pressure`, {
@@ -117,9 +152,9 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 document.getElementById("press").innerHTML = pressureValue;
                 updatePressureGraph(pressureValue);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching PRESSURE data:', error));
 
-        //PRESSURE FETCH
+        //PRESSURE ICONS FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=pressure`, {
             method: 'GET',
             headers: {
@@ -141,10 +176,10 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 } else if (pressureValue > 960 && pressureValue <= 980) {
                     var weatherValue = "Rain";
                     img.src = 'Icons/Rainy-Icon.png';
-                } else if (pressureValue > 980 && pressureValue <= 1010) {
+                } else if (pressureValue > 980 && pressureValue <= 990) {
                     var weatherValue = "Cloudy";
                     img.src = 'Icons/Cloudy-Icon.png';
-                } else if (pressureValue > 1010 && pressureValue <= 1040) {
+                } else if (pressureValue > 980 && pressureValue <= 1040) {
                     var weatherValue = "Sunny";
                     img.src = 'Icons/PartlyCloudy-Icon.png';
                 } else if (pressureValue > 1040) {
@@ -153,7 +188,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 }
                 document.getElementById("weatherStatus").innerHTML = weatherValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching PRESSURE ICONS data:', error));
 
 
         //LUX FETCH
@@ -172,7 +207,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 const luxValue = data.luxLevel[0].value;
                 document.getElementById("lux").innerHTML = luxValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching LUX data:', error));
 
         //HISTORICAL LUX FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=luxLevel&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=31&agg=AVG&orderBy=ASC`, {
@@ -189,7 +224,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 console.log(data);
                 updateLuxGraph(data.luxLevel);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching HISTORICAL LUX data:', error));
 
 
         //HUMIDITY FETCH
@@ -209,7 +244,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
             document.getElementById("hum").innerHTML = humidityValue;
             updateHumidityGraph(humidityValue);
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => console.error('Error fetching HUMIDITY data:', error));
 
 
         //UV INDEX FETCH
@@ -229,7 +264,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 document.getElementById("uv").innerHTML = uvValue;
                 updateUvGraph(uvValue);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching UV INDEX data:', error));
 
 
         //HEAT INDEX FETCH
@@ -248,7 +283,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 const heatValue = data.heatIndex[0].value;
                 document.getElementById("heat").innerHTML = heatValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching HEAT INDEX data:', error));
 
 
         //ABSOLUTE HUMIDITY FETCH
@@ -267,7 +302,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 const ahumValue = data.absHum[0].value;
                 document.getElementById("abhum").innerHTML = ahumValue;
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching ABSOLUTE HUMIDITY data:', error));
 
         //HISTORICAL ABSOLUTE HUMIDITY FETCH
         fetch(`https://dash.esclone.com/api/plugins/telemetry/DEVICE/${device}/values/timeseries?keys=absHum&startTs=${startTs}&endTs=${endTs}&intervalType=MILLISECONDS&interval=86400000&timeZone=GMT%2B02%3A00&limit=31&agg=AVG&orderBy=ASC`, {
@@ -284,7 +319,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
                 console.log(data);
                 updateAbHumidityGraph(data.absHum);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching HISTORICAL ABSOLUTE HUMIDITY data:', error));
 
 
         //HISTORICAL TEMPERATURE/HUMIDITY FETCH
@@ -337,7 +372,7 @@ fetch('https://dash.esclone.com/api/auth/login', {
 
                 updateHumidityAndTemperatureGraph(minHumidityProcessed, maxHumidityProcessed, medianTemperatureProcessed);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching HISTORICAL TEMPERATURE/HUMIDITY data:', error));
     })
     .catch(error => console.error('Error fetching token:', error));
 }

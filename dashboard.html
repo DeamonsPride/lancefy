@@ -119,7 +119,7 @@
                         <p class="card4-header">Wind Status</p>
                         <div class="card4-graphs" id="wind"></div>  <!--graph-->
                         <div class="card4-number">
-                            <p class="card4-variable">7.90</p> <!--var-->
+                            <p id="win" class="card4-variable"></p> <!--var-->
                             <p class="card4-unit">km/h</p>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                     var layout = {
                         xaxis: {
                             tickfont: {
-                                size: 10,
+                                size: 8,
                                 color: 'rgb(107, 107, 107)'
                             }
                         },
@@ -251,7 +251,7 @@
                             range: [null, 100],
                             title: 'Humidity % & Temperature °C',
                             titlefont: {
-                                size: 12,
+                                size: 10,
                                 color: 'rgb(107, 107, 107)'
                             },
                             tickfont: {
@@ -283,7 +283,7 @@
                             },
                         xaxis: {
                             tickfont: {
-                                size: 16,
+                                size: 14,
                                 color: 'rgb(107, 107, 107)'
                             }
                         },
@@ -319,7 +319,7 @@
                     var layout = {
                         title: "Humidity and Temperature Graph",
                         titlefont: {
-                                size: 35,
+                                size: 33,
                             },
                         xaxis: {
                             tickfont: {
@@ -558,103 +558,202 @@
         </script>
     
         <script> //wind chart
-            const screenWidth = window.innerWidth;
-            var trace1 = {
-                x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                y: [3, 4, 5, 5, 6, 3, 6, 7, 10, 15, 17, 20], //var
-                type: 'scatter',
-                mode: 'lines',
-                line: {
-                    color: '#11C8E4',
-                    width: 3
+            function updateWindGraph(data) {
+                var xValues = data.map(point => new Date(point.ts));
+                var yValues = data.map(point => point.value);
+                const screenWidth = window.innerWidth;
+    
+                var trace = {
+                    x: xValues,
+                    y: yValues,
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: {
+                        color: '#11C8E4',
+                        width: 3
+                    }
+                };
+    
+                if (screenWidth <= 1700){ //laptop
+                    var layout = {
+                        xaxis: {
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            type: 'date',
+                            showgrid: false,
+                            zeroline: false
+                        },
+                        yaxis: {
+                            range: [null, 64000],
+                            titlefont: {
+                                size: 16,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            showgrid: false
+                        },
+                        legend: {
+                            x: 0,
+                            y: 1.1,
+                            bgcolor: 'rgba(255, 255, 255, 0)',
+                            bordercolor: 'rgba(255, 255, 255, 0)'
+                        },
+                        barmode: 'group',
+                        margin: { t: 0, r: 0, l: 0, b: 0 },
+                        bargap: 0.15,
+                        bargroupgap: 0.1,
+                        width: 170,
+                        height: 100,
+                        paper_bgcolor: '251c1c00',
+                        plot_bgcolor: '251c1c00'
+                    };
+                } else if (screenWidth > 1700 && screenWidth <= 1920){ //pc
+                    var layout = {
+                        xaxis: {
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            type: 'date',
+                            showgrid: false,
+                            zeroline: false
+                        },
+                        yaxis: {
+                            range: [null, 64000],
+                            titlefont: {
+                                size: 16,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            showgrid: false
+                        },
+                        legend: {
+                            x: 0,
+                            y: 1.1,
+                            bgcolor: 'rgba(255, 255, 255, 0)',
+                            bordercolor: 'rgba(255, 255, 255, 0)'
+                        },
+                        barmode: 'group',
+                        margin: { t: 0, r: 0, l: 0, b: 0 },
+                        bargap: 0.15,
+                        bargroupgap: 0.1,
+                        width: 250,
+                        height: 150,
+                        paper_bgcolor: '251c1c00',
+                        plot_bgcolor: '251c1c00'
+                    };
+                } else if (screenWidth > 1920 && screenWidth <= 2560){ //quad
+                    var layout = {
+                        xaxis: {
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            type: 'date',
+                            showgrid: false,
+                            zeroline: false
+                        },
+                        yaxis: {
+                            range: [null, 64000],
+                            titlefont: {
+                                size: 16,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            showgrid: false
+                        },
+                        legend: {
+                            x: 0,
+                            y: 1.1,
+                            bgcolor: 'rgba(255, 255, 255, 0)',
+                            bordercolor: 'rgba(255, 255, 255, 0)'
+                        },
+                        barmode: 'group',
+                        margin: { t: 0, r: 0, l: 0, b: 0 },
+                        bargap: 0.15,
+                        bargroupgap: 0.1,
+                        width: 350,
+                        height: 200,
+                        paper_bgcolor: '251c1c00',
+                        plot_bgcolor: '251c1c00'
+                    };
+                } else if (screenWidth > 2560){ //ultra
+                    var layout = {
+                        xaxis: {
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            type: 'date',
+                            showgrid: false,
+                            zeroline: false
+                        },
+                        yaxis: {
+                            range: [null, 64000],
+                            titlefont: {
+                                size: 16,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            tickfont: {
+                                size: 14,
+                                color: 'rgb(107, 107, 107)'
+                            },
+                            showgrid: false
+                        },
+                        legend: {
+                            x: 0,
+                            y: 1.1,
+                            bgcolor: 'rgba(255, 255, 255, 0)',
+                            bordercolor: 'rgba(255, 255, 255, 0)'
+                        },
+                        barmode: 'group',
+                        margin: { t: 0, r: 0, l: 0, b: 0 },
+                        bargap: 0.15,
+                        bargroupgap: 0.1,
+                        width: 500,
+                        height: 300,
+                        paper_bgcolor: '251c1c00',
+                        plot_bgcolor: '251c1c00'
+                    };
                 }
-            };
     
-            if (screenWidth <= 1700){ //laptop
-                var layout = {
-                    xaxis: {
-                        showgrid: false,
-                        zeroline: false
-                    },
-                    yaxis: {
-                        showgrid: false
-                    },
-                    width: 170,
-                    height: 100,
-                    margin: { t: 0, r: 0, l: 0, b: 0 },
-                    paper_bgcolor: '251c1c00',
-                    plot_bgcolor: '251c1c00'
-                };
-            } else if (screenWidth > 1700 && screenWidth <= 1920){ //pc
-                var layout = {
-                    xaxis: {
-                        showgrid: false,
-                        zeroline: false
-                    },
-                    yaxis: {
-                        showgrid: false
-                    },
-                    width: 250,
-                    height: 150,
-                    margin: { t: 0, r: 0, l: 0, b: 0 },
-                    paper_bgcolor: '251c1c00',
-                    plot_bgcolor: '251c1c00'
-                };
-            } else if (screenWidth > 1920 && screenWidth <= 2560){ //quad
-                var layout = {
-                    xaxis: {
-                        showgrid: false,
-                        zeroline: false
-                    },
-                    yaxis: {
-                        showgrid: false
-                    },
-                    width: 350,
-                    height: 200,
-                    margin: { t: 0, r: 0, l: 0, b: 0 },
-                    paper_bgcolor: '251c1c00',
-                    plot_bgcolor: '251c1c00'
-                };
-            } else if (screenWidth > 2560){ //ultra
-                var layout = {
-                    xaxis: {
-                        showgrid: false,
-                        zeroline: false
-                    },
-                    yaxis: {
-                        showgrid: false
-                    },
-                    width: 500,
-                    height: 300,
-                    margin: { t: 0, r: 0, l: 0, b: 0 },
-                    paper_bgcolor: '251c1c00',
-                    plot_bgcolor: '251c1c00'
-                };
+                var data = [trace];
+                var config = { responsive: true };
+    
+                Plotly.newPlot('wind', data, layout, config);
             }
-    
-            var data = [trace1];
-            var config = {responsive: true}
-    
-            Plotly.newPlot('wind', data, layout, config);
         </script>
     
         <script> //pressure chart
-            var data = [
-                {
-                    type: "indicator",
-                    mode: "gauge+number+delta",
-                    value: 1010,
-                    delta: { reference: 1040, increasing: { color: "#757A7A" }, decreasing: { color: "#757A7A" } },
-                    gauge: {
-                        axis: { range: [null, 1070], tickwidth: 2, tickcolor: "#131414" },
-                        bar: { color: "#11C8E4"},
-                        bgcolor: "white",
-                        borderwidth: 2,
-                        bordercolor: "#757A7A",
+            //update graph
+            function updatePressureGraph(pressureValue) {
+                const screenWidth = window.innerWidth;
+                var newData = [
+                    {
+                        type: "indicator",
+                        mode: "gauge+number",
+                        value: pressureValue,
+                        gauge: {
+                            axis: { range: [null, 1070], tickwidth: 2, tickcolor: "#131414" },
+                            bar: { color: "#11C8E4"},
+                            bgcolor: "white",
+                            borderwidth: 2,
+                            bordercolor: "#757A7A",
+                        }
                     }
-                }
-            ];
-    
+                ];
+
             if (screenWidth <= 1700){ //laptop
                 var layout = {
                     width: 170,
@@ -688,27 +787,6 @@
                     font: { color: "#131414", family: "Inter", size: 20 }
                 };
             }
-    
-            var config = { responsive: true };
-    
-            Plotly.newPlot('pressure', data, layout, config);
-    
-            //update graph
-            function updatePressureGraph(pressureValue) {
-                var newData = [
-                    {
-                        type: "indicator",
-                        mode: "gauge+number",
-                        value: pressureValue,
-                        gauge: {
-                            axis: { range: [null, 1070], tickwidth: 2, tickcolor: "#131414" },
-                            bar: { color: "#11C8E4"},
-                            bgcolor: "white",
-                            borderwidth: 2,
-                            bordercolor: "#757A7A",
-                        }
-                    }
-                ];
     
                 var config = { responsive: true };
     

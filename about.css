@@ -1,7 +1,12 @@
 body{
-    background-color: #F6F6F6;
+    background-color: #F2F2F2;
 }
 
+.sp {
+    font-size: 1.5vw;
+
+    margin-top: 1vw;
+}
 
 
 /*----NETWORK HEADER----*/
@@ -44,4 +49,242 @@ body{
     font-size: 2.5vw;
 
     color: #F6F6F6;
+}
+
+
+
+/*----HERO----*/
+
+.hero {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/*background*/
+
+.hero-background {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1;
+}
+
+#hero-background-main {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+#hero-background-transition {
+    -webkit-filter: drop-shadow(0vw  3vw  0.01vw #131414);
+    filter: drop-shadow(0vw  3vw  0.01vw #131414);
+}
+
+/*text*/
+
+.hero-text {
+    width: 100%;
+    height: 18vw;
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-top: 17vw;
+
+    z-index: 100;
+}
+
+#hero-text-logo-colour {
+    width: 60%;
+
+    margin-left: 10vw;
+    margin-right: auto;
+
+    -webkit-filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+    filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+}
+
+#hero-text-network-colour {
+    width: 60%;
+
+    margin-left: auto;
+    margin-right: 10vw;
+
+    -webkit-filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+    filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+}
+
+
+
+/*----CONTENT----*/
+
+.content {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/*SECTION 1*/
+
+.section-one {
+    height: 60vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: #F2F2F2;
+}
+
+.section-one-card {
+    width: 60vw;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10vw;
+    margin-right: 25vw;
+    padding: 3%;
+    padding-right: 15%;
+
+    background-color: #FFFFFF;
+    box-shadow: 1vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
+    border-radius: 2vw;
+}
+
+.section-one-img {
+    width: 30vw;
+    height: auto;
+    position: absolute;
+
+    padding: 0px;
+    margin-left: 60%;
+
+    -webkit-filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
+    filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
+}
+
+/*SECTION 2*/
+
+.section-two {
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 5%;
+
+    background-color: #305680;
+    box-shadow: 0vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
+
+    z-index: 10;
+}
+
+.section-two-text {
+    display: flex;
+    flex-direction: column;
+
+    width: 46%;
+}
+
+.section-two-header {
+    width: 35vw;
+    height: auto;
+}
+
+.section-two-img {
+    width: 46%;
+    height: auto;
+
+    padding: 0px;
+}
+
+.section-two p {
+    color: #FFFFFF;
+}
+
+/*SECTION 3*/
+
+.section-three {
+    height: 60vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: #F2F2F2;
+}
+
+.section-three-card {
+    width: 60vw;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-right: 10vw;
+    margin-left: 40vw;
+    padding: 3%;
+}
+
+.section-three-img {
+    width: 30vw;
+    height: auto;
+    position: absolute;
+
+    padding: 0px;
+    margin-left: 10vw;
+}
+
+/*SECTION 4*/
+
+.section-four {
+    height: 60vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: #F2F2F2;
+}
+
+.section-four-card {
+    width: 60vw;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10vw;
+    margin-right: 30vw;
+    padding: 3%;
+    padding-right: 15%;
+
+    background-color: #FFFFFF;
+    box-shadow: 1vw  1vw  0.2vw rgba(0, 0, 0, 0.178);
+    border-radius: 2vw;
+}
+
+.section-four-img {
+    width: 40vw;
+    height: auto;
+    position: absolute;
+
+    padding: 0px;
+    margin-left: 50%;
+
+    transform: scaleX(-1);
+    -webkit-filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
+    filter: drop-shadow(1vw 1vw 0.2vw rgba(0, 0, 0, 0.178));
 }
