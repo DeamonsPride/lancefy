@@ -1,62 +1,84 @@
 body {
-  background-color: #3e6141;
+  background-color: #F2F2F2;
 }
 
 
 
-/*-----HERO------*/
+/*----HERO----*/
 
-#hero{
+.hero {
   width: 100%;
 
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+
+  z-index: 60;
 }
 
-#transition{
-  position: absolute;
-  min-width: 100%;
-  max-width: 100%;
+/*background*/
 
-  z-index: 100;
-}
-
-#trans-shadow{
-  position: absolute;
-  min-width: 100%;
-  max-width: 100%;
-
-  margin-top: 3%;
-  
-  z-index: 1;
-}
-
-/*-Word Logo-*/
-#word-logo {
-  max-width: 60%;
-  position: absolute;
-
-  z-index: 100;
-}
-
-#word-shadow{
-  max-width: 60%;
-  position: absolute;
-
-  margin-left: 1%;
-  margin-top: 1%;
-
-  z-index: 50;
-}
-
-.banner{
-  height: 100%;
-  position: relative;
+.hero-background {
+  width: 100%;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  
-  z-index: 40;
+
+  z-index: 1;
+}
+
+#hero-background-main {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+#hero-background-transition {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+
+  padding-bottom: 3.5vw;
+
+  -webkit-filter: drop-shadow(0vw  3vw  0.01vw #131414);
+  filter: drop-shadow(0vw  3vw  0.01vw #131414);
+}
+
+/*text*/
+
+.hero-text {
+  width: 100%;
+  height: 18vw;
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 17vw;
+
+  z-index: 100;
+}
+
+#hero-text-logo-colour {
+  width: 60%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  -webkit-filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+  filter: drop-shadow(0.6vw  0.6vw  0vw #131414);
+}
+
+
+
+/*----CONTENT----*/
+
+.content {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -65,7 +87,7 @@ body {
 
 .exdashback{
   width: 100%;
-  height: 100vw;
+  height: 80vw;
 
   display: flex;
   justify-content: center;
@@ -74,7 +96,7 @@ body {
   background-color: #F2F2F2;
   box-shadow: 0vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
-  z-index: 100;
+  z-index: 50;
 }
 
 .exdash{
@@ -83,13 +105,11 @@ body {
 
   display: flex;
 
-  margin-top: 25%;
-
   border-radius: 2vw;
   background-color: #FFFFFF;
   box-shadow: 2vw  2vw  0.2vw rgba(0, 0, 0, 0.178);
 
-  z-index: 100;
+  z-index: 50;
 }
 
 .basic-info{
@@ -222,6 +242,8 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  background-color: #2A3F27;
 
   z-index: 1;
 }
