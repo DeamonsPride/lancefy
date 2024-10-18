@@ -2,7 +2,7 @@
 var device = localStorage.getItem('device') || '';
 
 function station(name) {
-    if (name === 'avenijazaggzc01') {
+    if (name === 'AvenijaZGgzC01') {
         device = '41264160-fb47-11ee-9cc4-f58d0edc07e6';
     } else if (name === 'helenasmbzgc01') {
         device = 'placeholder'; 
@@ -27,8 +27,8 @@ fetch('https://dash.esclone.com/api/auth/login', {
         'Accept': 'application/json'
     },
     body: JSON.stringify({
-        "username": "lancefy@esclone.com", 
-        "password": "i40#C:n+"
+        "username": "jamie.marjanic@gmail.com", 
+        "password": "C9p$3iL!"
     }),
     mode: 'cors',
     cache: 'default',
